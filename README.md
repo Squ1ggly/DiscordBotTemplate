@@ -15,4 +15,4 @@ type **npm run test** in the terminal
 2. Whilst the Slash commands have a special integration with discord and will prompt the user what they can do when they type "/". They can also take special arguments. hence the createSlashCmd function.
 
 ## Stuff not finished;
-Typing
+TypeScript Typing
