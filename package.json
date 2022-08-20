@@ -1,0 +1,26 @@
+{
+  "name": "discordbottemplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc && ts-node ./index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Squ1ggly/squ1dsterbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Squ1ggly/squ1dsterbot/issues"
+  },
+  "homepage": "https://github.com/Squ1ggly/squ1dsterbot#readme",
+  "dependencies": {
+    "@discordjs/builders": "^1.1.0",
+    "@discordjs/collection": "^1.0.1",
+    "@discordjs/rest": "^1.0.1",
+    "discord-api-types": "^0.37.3",
+    "discord.js": "^14.2.0"
+  }
+}
