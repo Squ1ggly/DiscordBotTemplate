@@ -10,7 +10,7 @@ export default function coolDown(message, coolDowns, coolDownCMD: string) {
       }
       const now = Date.now();
       const timeStamps = coolDowns.get(coolDownCMD);
-      const coolDownAmount = 3 * 1000;
+      const coolDownAmount = 1 * 1000;
       if (timeStamps.has(id)) {
         const expirationTime = timeStamps.get(id) + coolDownAmount;
         if (now < expirationTime) {
