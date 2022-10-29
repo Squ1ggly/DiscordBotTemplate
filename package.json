@@ -21,6 +21,7 @@
     "@discordjs/collection": "^1.0.1",
     "@discordjs/rest": "^1.0.1",
     "@sapphire/shapeshift": "^3.7.0",
+    "chalk": "^4.1.2",
     "discord-api-types": "^0.37.3",
     "discord.js": "^14.2.0",
     "ts-node": "^10.9.1",
