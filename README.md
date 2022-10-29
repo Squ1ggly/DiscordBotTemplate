@@ -16,3 +16,7 @@ type **npm run test** in the terminal
 
 ## Stuff not finished;
 TypeScript Typing
+
+
+
+Don't worry about the credentials in there, they are from a deleted app :)
