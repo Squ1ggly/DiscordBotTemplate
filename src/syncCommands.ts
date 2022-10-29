@@ -8,9 +8,9 @@ export async function updateDiscordCommands(commands) {
   try {
 
     console.log("Started refreshing application (/) commands.");
-    
+
     await rest.put(Routes.applicationCommands(codes.botId), { body: [] })
-    
+
     await rest.put(Routes.applicationCommands(codes.botId), { body: commands });
 
     console.log("Successfully reloaded application (/) commands.");

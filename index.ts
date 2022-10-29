@@ -5,7 +5,7 @@ import { updateDiscordCommands } from "./src/syncCommands";
 import codes from "./botCodes.json";
 import { IClientWitPrefixCommands, setPrefixCommands } from "./src/setPrefixCommands";
 import coolDown from "./src/coolDown";
-//import { setUpDb } from "./src/SQLiteHelper";
+
 //cmd prefix not used for this bot
 const commandPrefix = "sq!";
 

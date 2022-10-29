@@ -12,7 +12,7 @@ export default function createEmbed(
   setTimestamp?: number | Date,
   setFooter?: EmbedFooterData
 ): EmbedBuilder {
-    const returnObj = new EmbedBuilder()
+  const returnObj = new EmbedBuilder()
     .setColor(setColour)
     .setTitle(setTitle)
     .setURL(setUrl)
