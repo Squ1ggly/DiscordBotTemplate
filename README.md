@@ -8,7 +8,7 @@ To add commands you can just create a new file in either the prefix or slash com
 For example you can create randomQuote.ts as a file. It will be added to the help command automatically.
 
 ### How to run 
-type **npm run test** in the terminal 
+type **yarn start** in the terminal 
 
 ## Extra Info
 1. The Prefix commands are basically just messages sent into a channel where a user prefixes the command with prefix e.g. "!ping" and have no special discord integrations.
