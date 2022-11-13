@@ -8,6 +8,6 @@
     "strict": false,
     "esModuleInterop": true,
     "moduleResolution": "Node",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   }
 }
