@@ -15,6 +15,7 @@ import { readdirSync } from "fs";
 import { DateTime } from "luxon";
 import dotenv from "dotenv";
 import { commandPrefix, globalCoolDown } from "../src";
+import path from "path";
 const env = dotenv.config({
   path: "./.env",
 }).parsed;
@@ -37,7 +38,7 @@ export function checkCommand(commandsArray: IPrefixCommand[] | ISlashCommand[], 
  * @param message : The message
  * @param coolDowns : The stored cool downs in the client
  * @param coolDownCMD : the command string
- * @returns 
+ * @returns
  */
 export function coolDown(
   message: Message | Interaction,
@@ -123,26 +124,36 @@ export function addStringOptionToSlashCmd(
 }
 
 /**
+ * removes null and empty string keys from object and returns a new one
+ * @param obj : And object to clean
+ * @returns a new object that is clean
+ */
+export function removeUnusedKeys(obj: object): Object {
+  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v !== null && v !== ""));
+}
+
+/**
  * This function takes IEmbedOptions and returns a new embed
  * @param {IEmbedOptions} options : A json object of the options for your embed
  * @returns { Embed }
  */
 export function createEmbed(options: IEmbedOptions): EmbedBuilder {
+  const cleanOptions = removeUnusedKeys(options) as IEmbedOptions;
   return new EmbedBuilder()
-    .setColor(options?.setColor ?? 0)
-    .setTitle(options?.setTitle)
+    .setColor(cleanOptions?.setColor ?? 0)
+    .setTitle(cleanOptions?.setTitle)
     .setAuthor(
-      options?.setAuthor ?? {
+      cleanOptions?.setAuthor ?? {
         name: null,
       }
     )
-    .setDescription(options?.setDescription)
-    .setThumbnail(options?.setThumbnail ?? null)
-    .addFields(options?.addFields ?? [])
-    .setImage(options?.setImage ?? null)
-    .setTimestamp(options?.setTimestamp ?? DateTime.now().toMillis())
-    .setFooter(options?.setFooter ?? { text: null })
-    .setURL(options.setURL ?? null);
+    .setDescription(cleanOptions?.setDescription)
+    .setThumbnail(cleanOptions?.setThumbnail ?? null)
+    .addFields(cleanOptions?.addFields ?? [])
+    .setImage(cleanOptions?.setImage ?? null)
+    .setTimestamp(cleanOptions?.setTimestamp ?? DateTime.now().toMillis())
+    .setFooter(cleanOptions?.setFooter ?? { text: null })
+    .setURL(cleanOptions?.setURL ?? null);
 }
 
 /**
@@ -184,13 +195,13 @@ export function genHelpMessage(
 }
 
 /**
- * Assemble slash commands and store them in the client for later use 
- * @param {IBotHelperClient} client 
+ * Assemble slash commands and store them in the client for later use
+ * @param {IBotHelperClient} client
  */
 export function setSlashCommands(client: IBotHelperClient) {
   client.commands = new Collection();
-
-  const commandFiles = readdirSync("./src/SlashCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
+  const upDir = path.join(__dirname, "../");
+  const commandFiles = readdirSync(upDir + "/src/SlashCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
 
   client.slashCommandsArray = [];
 
@@ -207,12 +218,13 @@ export function setSlashCommands(client: IBotHelperClient) {
 }
 
 /**
- * Assemble prefix commands and store them in the client for later use 
- * @param {IBotHelperClient} client 
+ * Assemble prefix commands and store them in the client for later use
+ * @param {IBotHelperClient} client
  */
 export function setPrefixCommands(client: IBotHelperClient) {
   client.prefixCommands = new Collection();
-  const commandFiles = readdirSync("./src/PrefixCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
+  const upDir = path.join(__dirname, "../");
+  const commandFiles = readdirSync(upDir + "/src/PrefixCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
   client.prefixCommandsArray = [];
   for (const file of commandFiles) {
     const command = require(`../src/PrefixCommands/${file}`);

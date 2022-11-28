@@ -23,7 +23,7 @@ export const globalCoolDown = 5;
 // Global author
 export const globalAuthor: EmbedAuthorData = {
   name: "TEST",
-  iconURL: env?.botImage,
+  iconURL: env?.botImage === "" ? null : env?.botImage,
 };
 
 const red = (m: string) => chalk.redBright(m);
