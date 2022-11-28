@@ -57,6 +57,7 @@ export function coolDown(
       const expirationTime = timeStamps.get(id) + coolDownAmount;
       if (now < expirationTime) {
         const timeLeft = (expirationTime - now) / 1000;
+        console.log(`User ${id} is too fast`);
         return (message as CommandInteraction).reply(
           `FYI: Please wait ${timeLeft.toFixed(1)} more seconds before using ${coolDownCMD}`
         );
@@ -138,6 +139,7 @@ export function removeUnusedKeys(obj: object): Object {
  * @returns { Embed }
  */
 export function createEmbed(options: IEmbedOptions): EmbedBuilder {
+  console.log(`Creating embed ${JSON.stringify(options, null, 2)}`);
   const cleanOptions = removeUnusedKeys(options) as IEmbedOptions;
   return new EmbedBuilder()
     .setColor(cleanOptions?.setColor ?? 0)
@@ -168,6 +170,7 @@ export function genHelpMessage(
   author: EmbedAuthorData,
   optionalPrefix: string = null
 ): EmbedBuilder {
+  console.log(`Generating help message for ${JSON.stringify(commandArray, null, 2)}`);
   const fields = [];
   const prefix = !optionalPrefix ? commandPrefix : optionalPrefix;
   for (const helpObj of commandArray) {
@@ -199,6 +202,7 @@ export function genHelpMessage(
  * @param {IBotHelperClient} client
  */
 export function setSlashCommands(client: IBotHelperClient) {
+  console.log(`Setting slash commands`)
   client.commands = new Collection();
   const upDir = path.join(__dirname, "../");
   const commandFiles = readdirSync(upDir + "/src/SlashCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
@@ -215,6 +219,7 @@ export function setSlashCommands(client: IBotHelperClient) {
     client.slashCommandsArray.push(commandObj);
     client.commands.set(command.data.name, command);
   }
+  console.log(`Finished setting slash commands`)
 }
 
 /**
@@ -222,6 +227,7 @@ export function setSlashCommands(client: IBotHelperClient) {
  * @param {IBotHelperClient} client
  */
 export function setPrefixCommands(client: IBotHelperClient) {
+  console.log(`Setting prefix commands`)
   client.prefixCommands = new Collection();
   const upDir = path.join(__dirname, "../");
   const commandFiles = readdirSync(upDir + "/src/PrefixCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
@@ -235,6 +241,7 @@ export function setPrefixCommands(client: IBotHelperClient) {
     client.prefixCommandsArray.push(commandObj);
     client.prefixCommands.set(command.name, command);
   }
+  console.log(`Finished setting prefix commands`)
 }
 
 /**
@@ -258,9 +265,9 @@ export async function clearBotLevelCommands() {
   const rest = new REST({ version: "10" }).setToken(env.token);
   const curr = (await rest.get(`/applications/${env.botId}/commands`)) as any[];
   if (curr.length > 0) {
-    console.log("Started refreshing application (/) commands.");
+    console.log("Started clearing application (/) commands.");
     await rest.put(Routes.applicationCommands(env.botId), { body: [] });
-    console.log("Successfully removed application (/) commands.");
+    console.log("Successfully cleared application (/) commands.");
   }
 }
 

@@ -64,6 +64,7 @@ function startBot(): void {
     if (!interaction.isChatInputCommand()) return;
     if (!checkCommand(client.slashCommandsArray, interaction.commandName)) return;
     if (!coolDown(interaction, client.coolDowns, interaction.commandName)) {
+      console.log(`User ${interaction.member.user.username} executed command ${interaction.commandName}`);
       await client.commands.get(interaction.commandName).execute(interaction, client);
     }
   });
@@ -77,6 +78,7 @@ function startBot(): void {
     const commandText = command.toLocaleLowerCase().replace(commandPrefix, "").split(" ")[0];
     if (!checkCommand(client.prefixCommandsArray, commandText)) return;
     if (!coolDown(message, client.coolDowns, commandText)) {
+      console.log(`User ${message.member.displayName} executed command ${commandText}`);
       await client.prefixCommands.get(commandText).execute(message, client);
     }
   });

@@ -11,8 +11,8 @@ module.exports = {
 
       const helpMessage = genHelpMessage(client.prefixCommandsArray, globalAuthor);
       await message.reply({ embeds: [helpMessage] });
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
       await message.reply(`Error Occurred`);
     }
   },
