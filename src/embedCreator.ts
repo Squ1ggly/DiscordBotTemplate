@@ -7,7 +7,7 @@ import {
   EmbedFooterData,
   EmbedImageData,
 } from "discord.js";
-
+import {DateTime} from 'luxon'
 export interface IEmbedOptions {
   setTitle: string;
   setDescription: string;
@@ -39,7 +39,7 @@ export default function createEmbed(options: IEmbedOptions): EmbedBuilder {
     .setThumbnail(options?.setThumbnail ?? null)
     .addFields(options?.addFields ?? [])
     .setImage(options?.setImage ?? null)
-    .setTimestamp(options?.setTimestamp ?? new Date())
+    .setTimestamp(options?.setTimestamp ?? DateTime.now().toMillis())
     .setFooter(options?.setFooter ?? { text: null })
     .setURL(options.setURL ?? null);
 }

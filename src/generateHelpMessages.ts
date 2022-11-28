@@ -1,8 +1,13 @@
 import { Embed, EmbedAuthorData, EmbedBuilder } from "discord.js";
 import createEmbed, { IEmbedOptions } from "./embedCreator";
 import { ICommand } from "./setCommands";
+import { DateTime } from "luxon";
 
-export default function genHelpMessage(commandArray: ICommand[], prefix: string, author: EmbedAuthorData): EmbedBuilder {
+export default function genHelpMessage(
+  commandArray: ICommand[],
+  prefix: string,
+  author: EmbedAuthorData
+): EmbedBuilder {
   const fields = [];
   for (const helpObj of commandArray) {
     fields.push({
@@ -21,7 +26,7 @@ export default function genHelpMessage(commandArray: ICommand[], prefix: string,
     setThumbnail: "https://imagessquigglyzerocool.z26.web.core.windows.net/squid.jpg",
     addFields: fields,
     setImage: null,
-    setTimestamp: new Date(),
+    setTimestamp: DateTime.now().toMillis(),
     setFooter: { text: null },
   };
   const embed = createEmbed(eObj);
