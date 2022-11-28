@@ -10,7 +10,7 @@ import {
 
 export interface IEmbedOptions {
   setTitle: string;
-  setDescription: string;  
+  setDescription: string;
   setColor?: EmbedData["color"];
   setURL?: string;
   setAuthor?: EmbedAuthorData;
