@@ -1,5 +1,5 @@
 import { EmbedAuthorData, EmbedBuilder } from "discord.js";
-import createEmbed from "./embedCreator";
+import createEmbed, { IEmbedOptions } from "./embedCreator";
 import { ICommand } from "./setCommands";
 
 export default function genHelpMessage(commandArray: ICommand[], prefix: string, author: EmbedAuthorData): EmbedBuilder {
@@ -12,18 +12,18 @@ export default function genHelpMessage(commandArray: ICommand[], prefix: string,
     });
   }
 
-  const embed = createEmbed(
-    0x0099ff,
-    "Help Message!",
-    null,
-    author,
-    "This is a list of commands that you can run",
-    "https://imagessquigglyzerocool.z26.web.core.windows.net/squid.jpg",
-    fields,
-    null,
-    null,
-    { text: null }
-  );
-
+  const eObj: IEmbedOptions = {
+    setColor: 0x0099ff,
+    setTitle: "Help Message!",
+    setURL: null,
+    setAuthor: author,
+    setDescription: "This is a list of commands that you can run",
+    setThumbnail: "https://imagessquigglyzerocool.z26.web.core.windows.net/squid.jpg",
+    addFields: fields,
+    setImage: null,
+    setTimestamp: null,
+    setFooter: { text: null },
+  };
+  const embed = createEmbed(eObj);
   return embed;
 }

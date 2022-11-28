@@ -12,7 +12,7 @@ export interface IClientWitCommands extends Client {
 export function setCommands(client: IClientWitCommands) {
   client.commands = new Collection();
 
-  const commandFiles = readdirSync("./SlashCommands").filter((e) => e.endsWith(".ts"));
+  const commandFiles = readdirSync("./SlashCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
 
   client.commandsArray = [];
 

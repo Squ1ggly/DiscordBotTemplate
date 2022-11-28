@@ -8,7 +8,7 @@ export interface IClientWitPrefixCommands extends Client {
 export function setPrefixCommands(client: IClientWitPrefixCommands) {
   client.prefixCommands = new Collection();
 
-  const commandFiles = readdirSync("./PrefixCommands").filter((e) => e.endsWith(".ts"));
+  const commandFiles = readdirSync("./PrefixCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
 
   client.prefixCommandsArray = [];
 
