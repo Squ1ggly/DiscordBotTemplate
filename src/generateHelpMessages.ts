@@ -1,12 +1,8 @@
-import { EmbedAuthorData, EmbedBuilder } from "discord.js";
+import { Embed, EmbedAuthorData, EmbedBuilder } from "discord.js";
 import createEmbed, { IEmbedOptions } from "./embedCreator";
 import { ICommand } from "./setCommands";
 
-export default function genHelpMessage(
-  commandArray: ICommand[],
-  prefix: string,
-  author: EmbedAuthorData
-): EmbedBuilder {
+export default function genHelpMessage(commandArray: ICommand[], prefix: string, author: EmbedAuthorData): EmbedBuilder {
   const fields = [];
   for (const helpObj of commandArray) {
     fields.push({
@@ -25,7 +21,7 @@ export default function genHelpMessage(
     setThumbnail: "https://imagessquigglyzerocool.z26.web.core.windows.net/squid.jpg",
     addFields: fields,
     setImage: null,
-    setTimestamp: null,
+    setTimestamp: new Date(),
     setFooter: { text: null },
   };
   const embed = createEmbed(eObj);
