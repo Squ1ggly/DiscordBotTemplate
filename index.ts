@@ -2,11 +2,13 @@ import { Client, GatewayIntentBits, Interaction } from "discord.js";
 import { checkCommand } from "./src/checkCommand";
 import { IClientWitCommands, setCommands } from "./src/setCommands";
 import { updateDiscordCommands } from "./src/syncCommands";
-import codes from "./botCodes.json";
+import dotenv from "dotenv";
 import { IClientWitPrefixCommands, setPrefixCommands } from "./src/setPrefixCommands";
 import coolDown from "./src/coolDown";
 import chalk from "chalk";
-
+const codes = dotenv.config({
+  path: "./.env"
+}).parsed
 try {
   if (codes.botId && codes.token) {
     //cmd prefix not used for this bot

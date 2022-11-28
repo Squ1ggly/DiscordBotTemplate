@@ -1,9 +1,9 @@
 import { Collection } from "discord.js";
 
 export default function coolDown(message, coolDowns, coolDownCMD: string) {
-  let id: string
-  if (message?.author?.id) id = message.author.id
-  else id = message.member.id
+  let id: string;
+  if (message?.author?.id) id = message.author.id;
+  else id = message.member.id;
   try {
     if (!coolDowns.has(coolDownCMD)) {
       coolDowns.set(coolDownCMD, new Collection());

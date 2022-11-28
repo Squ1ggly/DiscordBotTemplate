@@ -1,8 +1,10 @@
 import { Routes } from "discord.js";
-import codes from "../botCodes.json";
+import dotenv from "dotenv";
 import { REST } from "@discordjs/rest";
 import { ICommand } from "./setCommands";
-
+const codes = dotenv.config({
+  path: "./.env"
+}).parsed
 export async function updateDiscordCommands(commands: ICommand[]) {
   try {
     const rest = new REST({ version: "10" }).setToken(codes.token);
