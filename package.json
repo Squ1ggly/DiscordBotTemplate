@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "genenv": "node ./genenv.js",
-    "start": "yarn && npx tsc && node ./copyfilestoenv.js && ts-node ./src/index.ts"
+    "start:yarn": "yarn && npx tsc && node ./copyfilestoenv.js && ts-node ./src/index.ts",
+    "start:npm": "npm i && npx tsc && node ./copyfilestoenv.js && ts-node ./src/index.ts"
   },
   "repository": {
     "type": "git",

@@ -19,7 +19,7 @@ PREREQUISITES
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you are using yarn, please remove package-lock.json OR yarn.lock if you are using npm
         
 1. **DO THIS FIRST** => ***npm genenv*** OR ***yarn genenv*** : This will generate the .env file required for the bot to run.
-2. After run **npm start** OR **yarn start** in the terminal : This will start the bot
+2. After run **npm start:npm** OR **yarn start:yarn** in the terminal : This will start the bot. The packet manager can be interchanged i.e. **npm start:yarn** is valid.
 
 ## Extra Info for beginners
 1. The Prefix commands are messages sent into a channel with a prefix e.g. "!ping" and have no special discord integrations.
