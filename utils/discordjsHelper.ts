@@ -8,6 +8,7 @@ import {
   Message,
   Interaction,
   CommandInteraction,
+  InteractionResponse,
 } from "discord.js";
 import { IEmbedOptions, IBotHelperClient, ISlashCommand, IPrefixCommand } from "../types/helperTypes";
 import { readdirSync } from "fs";
@@ -18,18 +19,31 @@ const env = dotenv.config({
   path: "./.env",
 }).parsed;
 
-export function checkCommand(commands: IPrefixCommand[] | ISlashCommand[], commandMsg: string): boolean {
-  for (const command of commands) {
+/**
+ * This function will return true if the message is a command and false if not.
+ * @param {IPrefixCommand[] | ISlashCommand[]} commandsArray : The Commands
+ * @param {string} commandMsg : The message string
+ * @returns {boolean}
+ */
+export function checkCommand(commandsArray: IPrefixCommand[] | ISlashCommand[], commandMsg: string): boolean {
+  for (const command of commandsArray) {
     if (command.name === commandMsg) return true;
   }
   return false;
 }
 
+/**
+ * This function will create a cool down message if a user is spamming commands : Configured in globalCoolDown variable in the index
+ * @param message : The message
+ * @param coolDowns : The stored cool downs in the client
+ * @param coolDownCMD : the command string
+ * @returns 
+ */
 export function coolDown(
   message: Message | Interaction,
   coolDowns: Map<string, Collection<string, number>>,
   coolDownCMD: string
-) {
+): Promise<InteractionResponse<boolean>> {
   const id: string = !(message as Message)?.author?.id ? message.member.user.id : (message as Message).author.id;
   try {
     if (!coolDowns.has(coolDownCMD)) {
@@ -169,6 +183,10 @@ export function genHelpMessage(
   return embed;
 }
 
+/**
+ * Assemble slash commands and store them in the client for later use 
+ * @param {IBotHelperClient} client 
+ */
 export function setSlashCommands(client: IBotHelperClient) {
   client.commands = new Collection();
 
@@ -188,6 +206,10 @@ export function setSlashCommands(client: IBotHelperClient) {
   }
 }
 
+/**
+ * Assemble prefix commands and store them in the client for later use 
+ * @param {IBotHelperClient} client 
+ */
 export function setPrefixCommands(client: IBotHelperClient) {
   client.prefixCommands = new Collection();
   const commandFiles = readdirSync("./src/PrefixCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
