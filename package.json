@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "yarn && npx tsc && ts-node ./index.ts"
+    "genenv": "node ./genenv.js",
+    "start": "yarn && npx tsc && ts-node ./src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -36,9 +37,12 @@
     "@discordjs/collection": "^1.0.1",
     "@discordjs/rest": "^1.0.1",
     "@sapphire/shapeshift": "^3.7.0",
+    "@types/luxon": "^3.1.0",
     "chalk": "^4.1.2",
     "discord-api-types": "^0.37.3",
     "discord.js": "^14.2.0",
+    "dotenv": "^16.0.3",
+    "luxon": "^3.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4",
     "yarn": "^1.22.19"

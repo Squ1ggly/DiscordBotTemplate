@@ -1,9 +1,10 @@
-import { ChatInputCommandInteraction } from "discord.js";
+import { ChatInputCommandInteraction, Message } from "discord.js";
+import { IBotHelperClient } from "../../types/helperTypes";
 
 module.exports = {
   name: "ping",
   description: 'This command will respond with "pong"',
-  execute(message: ChatInputCommandInteraction, client: any) {
+  execute(message: Message, client: IBotHelperClient) {
     try {
       message.channel.send("pong");
     } catch (err) {
