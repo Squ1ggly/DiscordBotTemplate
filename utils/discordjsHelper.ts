@@ -170,10 +170,10 @@ export function genHelpMessage(
   const eObj: IEmbedOptions = {
     setColor: 0x0099ff,
     setTitle: "Help Message!",
-    setURL: env.botImage,
+    setURL: env?.botImage,
     setAuthor: author,
     setDescription: "This is a list of commands that you can run",
-    setThumbnail: env.botImage, // Global bot image to use for embeds. Configured in .env
+    setThumbnail: env?.botImage, // Global bot image to use for embeds. Configured in .env
     addFields: fields,
     setImage: null,
     setTimestamp: DateTime.now().toMillis(),

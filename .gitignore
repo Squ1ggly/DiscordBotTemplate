@@ -3,3 +3,4 @@ node_modules
 dist
 .env
 REMOVE_THIS_TEXT.env
+deployDist

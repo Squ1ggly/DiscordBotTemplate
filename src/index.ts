@@ -23,7 +23,7 @@ export const globalCoolDown = 5;
 // Global author
 export const globalAuthor: EmbedAuthorData = {
   name: "TEST",
-  iconURL: env.botImage,
+  iconURL: env?.botImage,
 };
 
 const red = (m: string) => chalk.redBright(m);
@@ -33,7 +33,7 @@ const red = (m: string) => chalk.redBright(m);
  * @returns {IBotHelperClient}
  */
 function startBot(): void {
-  if (!env.botId && !env.token) throw new Error(red("\nWARNING : Please put credentials for bot in .env\n"));
+  if (!env?.botId && !env?.token) throw new Error(red("\nWARNING : Please put credentials for bot in .env\n"));
   const client: IBotHelperClient = new Client({
     intents: [
       GatewayIntentBits.Guilds,
