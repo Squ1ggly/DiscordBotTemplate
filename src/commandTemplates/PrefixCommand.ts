@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, Message } from "discord.js";
+import { Message } from "discord.js";
 import { IBotHelperClient } from "../../types/helperTypes";
 
 module.exports = {
