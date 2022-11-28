@@ -2,7 +2,11 @@ import { EmbedAuthorData, EmbedBuilder } from "discord.js";
 import createEmbed, { IEmbedOptions } from "./embedCreator";
 import { ICommand } from "./setCommands";
 
-export default function genHelpMessage(commandArray: ICommand[], prefix: string, author: EmbedAuthorData): EmbedBuilder {
+export default function genHelpMessage(
+  commandArray: ICommand[],
+  prefix: string,
+  author: EmbedAuthorData
+): EmbedBuilder {
   const fields = [];
   for (const helpObj of commandArray) {
     fields.push({

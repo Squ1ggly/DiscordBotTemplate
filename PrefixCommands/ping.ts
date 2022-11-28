@@ -1,10 +1,13 @@
+import { ChatInputCommandInteraction } from "discord.js";
+
 module.exports = {
   name: "ping",
   description: 'This command will respond with "pong"',
-  execute(message: any, client: any) {
+  execute(message: ChatInputCommandInteraction, client: any) {
     try {
       message.channel.send("pong");
-    } catch (error) {
+    } catch (err) {
+      console.log(err);
       message.channel.send(`Error Occurred`);
     }
   },

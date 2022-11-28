@@ -7,8 +7,8 @@ import { IClientWitPrefixCommands, setPrefixCommands } from "./src/setPrefixComm
 import coolDown from "./src/coolDown";
 import chalk from "chalk";
 const codes = dotenv.config({
-  path: "./.env"
-}).parsed
+  path: "./.env",
+}).parsed;
 try {
   if (codes.botId && codes.token) {
     //cmd prefix not used for this bot
@@ -17,7 +17,12 @@ try {
     const coolDowns = new Map();
 
     const client: IClientWitCommands & IClientWitPrefixCommands = new Client({
-      intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent],
+      intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.DirectMessages,
+        GatewayIntentBits.MessageContent,
+      ],
     });
 
     setCommands(client);
@@ -48,8 +53,7 @@ try {
     });
 
     client.login(codes.token);
-
   } else console.log(chalk.redBright("\n        WARNING : Please put credentials for bot in botCodes.json\n"));
 } catch (err) {
-  console.log(`${err}`)
+  console.log(`${err}`);
 }

@@ -35,11 +35,19 @@ export function createSlashCmd(cmdName: string, cmdDesc: string) {
  * @param required : Is option required for command?
  * @returns
  */
-export function createSlashCmdWithOpts(cmdName: string, cmdDesc: string, optName: string, optDesc: string, required: boolean = false) {
+export function createSlashCmdWithOpts(
+  cmdName: string,
+  cmdDesc: string,
+  optName: string,
+  optDesc: string,
+  required: boolean = false
+) {
   return new SlashCommandBuilder()
     .setName(cmdName.toLowerCase())
     .setDescription(cmdDesc.toLowerCase())
-    .addStringOption((option: ISlashCommandBuilderOpts) => option.setName(optName.toLowerCase()).setDescription(optDesc.toLowerCase()).setRequired(required));
+    .addStringOption((option: ISlashCommandBuilderOpts) =>
+      option.setName(optName.toLowerCase()).setDescription(optDesc.toLowerCase()).setRequired(required)
+    );
 }
 
 /**
@@ -50,5 +58,7 @@ export function createSlashCmdWithOpts(cmdName: string, cmdDesc: string, optName
  * @param required : Is option required or not
  */
 export function addStringOptionToSlashCmd(cmd, optName: string, optDesc: string, required: boolean = false) {
-  cmd.addStringOption((option: ISlashCommandBuilderOpts) => option.setName(optName.toLowerCase()).setDescription(optDesc.toLowerCase()).setRequired(required));
+  cmd.addStringOption((option: ISlashCommandBuilderOpts) =>
+    option.setName(optName.toLowerCase()).setDescription(optDesc.toLowerCase()).setRequired(required)
+  );
 }
