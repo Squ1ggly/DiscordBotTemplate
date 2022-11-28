@@ -1,4 +1,4 @@
-import { CommandInteraction, EmbedAuthorData } from "discord.js";
+import { CommandInteraction } from "discord.js";
 import { globalAuthor } from "..";
 import { IBotHelperClient } from "../../types/helperTypes";
 import { createSlashCmd, genHelpMessage } from "../../utils/discordjsHelper";

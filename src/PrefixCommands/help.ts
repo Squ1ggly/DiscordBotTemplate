@@ -1,4 +1,4 @@
-import { EmbedAuthorData, Message } from "discord.js";
+import { Message } from "discord.js";
 import { globalAuthor } from "..";
 import { IBotHelperClient } from "../../types/helperTypes";
 import { genHelpMessage } from "../../utils/discordjsHelper";
