@@ -65,7 +65,7 @@ function startBot(): void {
     if (!checkCommand(client.slashCommandsArray, interaction.commandName)) return;
     if (!coolDown(interaction, client.coolDowns, interaction.commandName)) {
       console.log(`User ${interaction.member.user.username} executed command ${interaction.commandName}`);
-      await client.commands.get(interaction.commandName).execute(interaction, client);
+      await client.slashCommands.get(interaction.commandName).execute(interaction, client);
     }
   });
 

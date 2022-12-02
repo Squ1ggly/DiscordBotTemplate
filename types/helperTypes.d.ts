@@ -1,11 +1,14 @@
 import {
   APIEmbedThumbnail,
   Client,
+  Collection,
   EmbedAuthorData,
   EmbedData,
   EmbedField,
   EmbedFooterData,
   EmbedImageData,
+  Interaction,
+  Message,
 } from "discord.js";
 
 export interface IPrefixCommand {
@@ -32,10 +35,13 @@ export interface IEmbedOptions {
   setFooter?: EmbedFooterData;
 }
 
+interface execute {
+  (message: Message | Interaction, client: IBotHelperClient);
+}
 export interface IBotHelperClient extends Client {
   slashCommandsArray?: ISlashCommand[];
-  commands?: any;
-  coolDowns?: any;
+  slashCommands?: Collection<string, { execute: execute }>;
+  coolDowns?: Map<string, Collection<string, number>>;
   prefixCommandsArray?: IPrefixCommand[];
-  prefixCommands?: any;
+  prefixCommands?: Collection<string, { execute: execute }>;
 }

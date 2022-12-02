@@ -203,7 +203,7 @@ export function genHelpMessage(
  */
 export function setSlashCommands(client: IBotHelperClient) {
   console.log(`Setting slash commands`)
-  client.commands = new Collection();
+  client.slashCommands = new Collection();
   const upDir = path.join(__dirname, "../");
   const commandFiles = readdirSync(upDir + "/src/SlashCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
 
@@ -217,7 +217,7 @@ export function setSlashCommands(client: IBotHelperClient) {
     };
     if (command.data.options.length > 0) commandObj.options = command.data.options;
     client.slashCommandsArray.push(commandObj);
-    client.commands.set(command.data.name, command);
+    client.slashCommands.set(command.data.name, command);
   }
   console.log(`Finished setting slash commands`)
 }
