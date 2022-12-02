@@ -39,9 +39,9 @@ interface execute {
   (message: Message | Interaction, client: IBotHelperClient);
 }
 export interface IBotHelperClient extends Client {
-  slashCommandsArray?: ISlashCommand[];
+  slashCommandsInfo?: ISlashCommand[];
   slashCommands?: Collection<string, { execute: execute }>;
   coolDowns?: Map<string, Collection<string, number>>;
-  prefixCommandsArray?: IPrefixCommand[];
+  prefixCommandsInfo?: IPrefixCommand[];
   prefixCommands?: Collection<string, { execute: execute }>;
 }

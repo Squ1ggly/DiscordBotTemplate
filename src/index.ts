@@ -56,13 +56,13 @@ function startBot(): void {
     console.log(`Bot Started`);
     //await updateDiscordCommands(client.slashCommandsArray);
     await clearBotLevelCommands();
-    await updateGuildCommands(client.slashCommandsArray);
+    await updateGuildCommands(client.slashCommandsInfo);
   });
 
   // Slash command listener
   client.on("interactionCreate", async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
-    if (!checkCommand(client.slashCommandsArray, interaction.commandName)) return;
+    if (!checkCommand(client.slashCommandsInfo, interaction.commandName)) return;
     if (!coolDown(interaction, client.coolDowns, interaction.commandName)) {
       console.log(`User ${interaction.member.user.username} executed command ${interaction.commandName}`);
       await client.slashCommands.get(interaction.commandName).execute(interaction, client);
@@ -76,7 +76,7 @@ function startBot(): void {
     const command = message.content.toLowerCase();
     if (!command.toLowerCase().startsWith(commandPrefix)) return;
     const commandText = command.toLocaleLowerCase().replace(commandPrefix, "").split(" ")[0];
-    if (!checkCommand(client.prefixCommandsArray, commandText)) return;
+    if (!checkCommand(client.prefixCommandsInfo, commandText)) return;
     if (!coolDown(message, client.coolDowns, commandText)) {
       console.log(`User ${message.member.displayName} executed command ${commandText}`);
       await client.prefixCommands.get(commandText).execute(message, client);

@@ -9,7 +9,7 @@ module.exports = {
   async execute(message: Message, client: IBotHelperClient) {
     try {
 
-      const helpMessage = genHelpMessage(client.prefixCommandsArray, globalAuthor);
+      const helpMessage = genHelpMessage(client.prefixCommandsInfo, globalAuthor);
       await message.reply({ embeds: [helpMessage] });
     } catch (err) {
       console.log(err);

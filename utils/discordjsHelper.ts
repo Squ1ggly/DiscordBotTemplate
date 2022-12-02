@@ -207,7 +207,7 @@ export function setSlashCommands(client: IBotHelperClient) {
   const upDir = path.join(__dirname, "../");
   const commandFiles = readdirSync(upDir + "/src/SlashCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
 
-  client.slashCommandsArray = [];
+  client.slashCommandsInfo = [];
 
   for (const file of commandFiles) {
     const command = require(`../src/SlashCommands/${file}`);
@@ -216,7 +216,7 @@ export function setSlashCommands(client: IBotHelperClient) {
       description: command.data.description,
     };
     if (command.data.options.length > 0) commandObj.options = command.data.options;
-    client.slashCommandsArray.push(commandObj);
+    client.slashCommandsInfo.push(commandObj);
     client.slashCommands.set(command.data.name, command);
   }
   console.log(`Finished setting slash commands`)
@@ -231,14 +231,14 @@ export function setPrefixCommands(client: IBotHelperClient) {
   client.prefixCommands = new Collection();
   const upDir = path.join(__dirname, "../");
   const commandFiles = readdirSync(upDir + "/src/PrefixCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
-  client.prefixCommandsArray = [];
+  client.prefixCommandsInfo = [];
   for (const file of commandFiles) {
     const command = require(`../src/PrefixCommands/${file}`);
     const commandObj: IPrefixCommand = {
       name: command.name,
       description: command.description,
     };
-    client.prefixCommandsArray.push(commandObj);
+    client.prefixCommandsInfo.push(commandObj);
     client.prefixCommands.set(command.name, command);
   }
   console.log(`Finished setting prefix commands`)

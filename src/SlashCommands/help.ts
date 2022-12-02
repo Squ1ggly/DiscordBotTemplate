@@ -10,7 +10,7 @@ module.exports = {
   ),
   async execute(interaction: CommandInteraction, client: IBotHelperClient) {
     try {
-      const helpMessage = genHelpMessage(client.slashCommandsArray, globalAuthor, "/");
+      const helpMessage = genHelpMessage(client.slashCommandsInfo, globalAuthor, "/");
       await interaction.reply({ embeds: [helpMessage] });
     } catch (err) {
       console.log(err);
