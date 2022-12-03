@@ -1,7 +1,6 @@
 import { CommandInteraction } from "discord.js";
-import { globalAuthor } from "..";
 import { IBotHelperClient } from "../../types/helperTypes";
-import { createSlashCmd, genHelpMessage } from "../../utils/discordjsHelper";
+import { createSlashCmd } from "../../utils/discordjsHelper";
 
 module.exports = {
   data: createSlashCmd(
@@ -10,8 +9,7 @@ module.exports = {
   ),
   async execute(interaction: CommandInteraction, client: IBotHelperClient) {
     try {
-      const helpMessage = genHelpMessage(client.slashCommandsInfo, globalAuthor, "/");
-      await interaction.reply({ embeds: [helpMessage] });
+      await interaction.reply({ embeds: [client.slashCommandHelpMessage] });
     } catch (err) {
       console.log(err);
       await interaction.reply(`Error Occurred`);

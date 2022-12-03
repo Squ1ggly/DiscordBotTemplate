@@ -3,6 +3,7 @@ import {
   Client,
   Collection,
   EmbedAuthorData,
+  EmbedBuilder,
   EmbedData,
   EmbedField,
   EmbedFooterData,
@@ -39,6 +40,8 @@ interface execute {
   (message: Message | Interaction, client: IBotHelperClient);
 }
 export interface IBotHelperClient extends Client {
+  prefixCommandHelpMessage?: EmbedBuilder;
+  slashCommandHelpMessage?: EmbedBuilder;
   slashCommandsInfo?: ISlashCommand[];
   slashCommands?: Collection<string, { execute: execute }>;
   coolDowns?: Map<string, Collection<string, number>>;

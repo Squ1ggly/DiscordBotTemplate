@@ -7,7 +7,8 @@
     "genenv": "node ./genenv.js",
     "start:yarn": "yarn && npx tsc && node ./copyfilestoenv.js && ts-node ./src/index.ts",
     "start:npm": "npm i && npx tsc && node ./copyfilestoenv.js && ts-node ./src/index.ts",
-    "build": "yarn && npx tsc && node ./copyfilestoenv.js"
+    "build": "yarn && npx tsc && node ./copyfilestoenv.js",
+    "start": "node ./dist/src/index.js"
   },
   "repository": {
     "type": "git",

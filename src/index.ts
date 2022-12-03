@@ -5,6 +5,7 @@ import {
   setSlashCommands,
   setPrefixCommands,
   updateGuildCommands,
+  genHelpMessage,
 } from "../utils/discordjsHelper";
 import chalk from "chalk";
 import { Client, EmbedAuthorData, GatewayIntentBits } from "discord.js";
@@ -49,6 +50,10 @@ function startBot(): void {
   // Set the slashCommands and the prefix commands in the client to be used laster
   setSlashCommands(client);
   setPrefixCommands(client);
+
+  // Generate help messages for commands
+  client.prefixCommandHelpMessage = genHelpMessage(client.prefixCommandsInfo, globalAuthor);
+  client.slashCommandHelpMessage = genHelpMessage(client.slashCommandsInfo, globalAuthor, "/");
 
   // When bot is status ready, Display in console that bot has started
   // And update slash commands on the discord bot application OR updated slash commands on specific server
