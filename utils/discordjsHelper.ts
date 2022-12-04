@@ -40,7 +40,7 @@ export function checkCommand(commandsArray: IPrefixCommand[] | ISlashCommand[], 
  * @param coolDownCMD : the command string
  * @returns
  */
-export function coolDown(
+export async function coolDown(
   message: Message | Interaction,
   coolDowns: Map<string, Collection<string, number>>,
   coolDownCMD: string
@@ -66,7 +66,7 @@ export function coolDown(
     timeStamps.set(id, now);
     setTimeout(() => timeStamps.delete(id), coolDownAmount);
   } catch (error) {
-    message.channel.send(`${error}`);
+    await message.channel.send(`${error}`);
   }
 }
 

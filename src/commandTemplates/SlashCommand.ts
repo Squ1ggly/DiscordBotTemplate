@@ -9,7 +9,7 @@ module.exports = {
       await interaction.reply("Pong!");
     } catch (err) {
       console.log(err);
-      interaction.reply("Error Occurred");
+      await interaction.reply("Error Occurred");
     }
   },
 };

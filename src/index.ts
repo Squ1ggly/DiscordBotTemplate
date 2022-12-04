@@ -68,7 +68,7 @@ function startBot(): void {
   client.on("interactionCreate", async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
     if (!checkCommand(client.slashCommandsInfo, interaction.commandName)) return;
-    if (!coolDown(interaction, client.coolDowns, interaction.commandName)) {
+    if (!(await coolDown(interaction, client.coolDowns, interaction.commandName))) {
       console.log(`User ${interaction.member.user.username} executed command ${interaction.commandName}`);
       await client.slashCommands.get(interaction.commandName).execute(interaction, client);
     }
@@ -82,7 +82,7 @@ function startBot(): void {
     if (!command.toLowerCase().startsWith(commandPrefix)) return;
     const commandText = command.toLocaleLowerCase().replace(commandPrefix, "").split(" ")[0];
     if (!checkCommand(client.prefixCommandsInfo, commandText)) return;
-    if (!coolDown(message, client.coolDowns, commandText)) {
+    if (!(await coolDown(message, client.coolDowns, commandText))) {
       console.log(`User ${message.member.displayName} executed command ${commandText}`);
       await client.prefixCommands.get(commandText).execute(message, client);
     }
