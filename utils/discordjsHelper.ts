@@ -9,6 +9,7 @@ import {
   Interaction,
   CommandInteraction,
   InteractionResponse,
+  APIApplicationCommandOptionChoice,
 } from "discord.js";
 import { IEmbedOptions, IBotHelperClient, ISlashCommand, IPrefixCommand } from "../types/helperTypes";
 import { readdirSync } from "fs";
@@ -107,6 +108,26 @@ export function createSlashCmdWithOpts(
 }
 
 /**
+ * This manipulate your slashCmd to have extra options with choices
+ * @param cmd : Your Slash object
+ * @param optName : Option name
+ * @param optDesc : Option Description
+ * @param choices : An array of choices for your option
+ * @param required : Is option required or not
+ */
+export function addStringOptionWithChoicesToSlashCmd(
+  cmd: SlashCommandBuilder,
+  optName: string,
+  optDesc: string,
+  choices: APIApplicationCommandOptionChoice<string>[],
+  required: boolean = false
+) {
+  cmd.addStringOption((option) =>
+    option.setName(optName.toLowerCase()).setDescription(optDesc.toLowerCase()).addChoices(...choices).setRequired(required)
+  );
+}
+
+/**
  * This manipulate your slashCmd to have extra options
  * @param cmd : Your Slash object
  * @param optName : Option name
@@ -202,7 +223,7 @@ export function genHelpMessage(
  * @param {IBotHelperClient} client
  */
 export function setSlashCommands(client: IBotHelperClient) {
-  console.log(`Setting slash commands`)
+  console.log(`Setting slash commands`);
   client.slashCommands = new Collection();
   const upDir = path.join(__dirname, "../");
   const commandFiles = readdirSync(upDir + "/src/SlashCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
@@ -219,7 +240,7 @@ export function setSlashCommands(client: IBotHelperClient) {
     client.slashCommandsInfo.push(commandObj);
     client.slashCommands.set(command.data.name, command);
   }
-  console.log(`Finished setting slash commands`)
+  console.log(`Finished setting slash commands`);
 }
 
 /**
@@ -227,7 +248,7 @@ export function setSlashCommands(client: IBotHelperClient) {
  * @param {IBotHelperClient} client
  */
 export function setPrefixCommands(client: IBotHelperClient) {
-  console.log(`Setting prefix commands`)
+  console.log(`Setting prefix commands`);
   client.prefixCommands = new Collection();
   const upDir = path.join(__dirname, "../");
   const commandFiles = readdirSync(upDir + "/src/PrefixCommands").filter((e) => e.endsWith(".ts") || e.endsWith(".js"));
@@ -241,7 +262,7 @@ export function setPrefixCommands(client: IBotHelperClient) {
     client.prefixCommandsInfo.push(commandObj);
     client.prefixCommands.set(command.name, command);
   }
-  console.log(`Finished setting prefix commands`)
+  console.log(`Finished setting prefix commands`);
 }
 
 /**
