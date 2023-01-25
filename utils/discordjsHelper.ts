@@ -60,7 +60,7 @@ export async function coolDown(
         const timeLeft = (expirationTime - now) / 1000;
         console.log(`User ${id} is too fast`);
         return (message as CommandInteraction).reply(
-          `FYI: Please wait ${timeLeft.toFixed(1)} more seconds before using ${coolDownCMD}`
+          `Please wait ${timeLeft.toFixed(1)} more seconds before using ${coolDownCMD}`
         );
       }
     }

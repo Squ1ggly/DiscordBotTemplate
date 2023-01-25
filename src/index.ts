@@ -81,7 +81,12 @@ function startBot(): void {
     const command = message.content.toLowerCase();
     if (!command.toLowerCase().startsWith(commandPrefix)) return;
     const commandText = command.toLocaleLowerCase().replace(commandPrefix, "").split(" ")[0];
-    if (!checkCommand(client.prefixCommandsInfo, commandText)) return;
+    if (!checkCommand(client.prefixCommandsInfo, commandText)) {
+      message.reply(
+        `Command not recognized, syntax is "${commandPrefix}COMMAND INPUT"\n The space is required between the command and the input`
+      );
+      return;
+    }
     if (!(await coolDown(message, client.coolDowns, commandText))) {
       console.log(`User ${message.member.displayName} executed command ${commandText}`);
       await client.prefixCommands.get(commandText).execute(message, client);
