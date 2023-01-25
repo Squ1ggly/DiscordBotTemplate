@@ -9,10 +9,11 @@ module.exports = {
   ),
   async execute(interaction: CommandInteraction, client: IBotHelperClient) {
     try {
-      await interaction.reply({ embeds: [client.slashCommandHelpMessage] });
+      await interaction.deferReply();
+      await interaction.editReply({ embeds: [client.slashCommandHelpMessage] });
     } catch (err) {
       console.log(err);
-      await interaction.reply(`Error Occurred`);
+      await interaction.editReply(`Error Occurred`);
     }
   },
 };
