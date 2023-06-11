@@ -107,7 +107,7 @@ export default class DiscordBotHelper {
     const baseObj = {
       setColor: 0x0099ff,
       setTitle: "Help Message!",
-      setURL: this.author.iconURL,
+      setURL: this.author.iconURL ?? "null",
       setAuthor: this.author,
       setDescription: "This is a list of commands that you can run",
       setThumbnail: this.author.iconURL,
