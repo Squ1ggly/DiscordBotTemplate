@@ -1,19 +1,15 @@
-import { CommandInteraction } from "discord.js";
-import { IBotHelperClient } from "../../types/helperTypes";
-import { createSlashCmd } from "../../utils/discordjsHelper";
+import { CommandInteraction, SlashCommandBuilder } from "discord.js";
+import { IBotHelperClient } from "../types/helper-types";
 
 module.exports = {
-  data: createSlashCmd(
-    "help",
-    'This command will send you the help message for "/" commands \n use **sq!help** for Prefixed commands'
-  ),
+  data: new SlashCommandBuilder().setName("help".toLowerCase()).setDescription('This command will send you the help message for "/" commands'),
   async execute(interaction: CommandInteraction, client: IBotHelperClient) {
     try {
       await interaction.deferReply();
-      await interaction.editReply({ embeds: [client.slashCommandHelpMessage] });
+      await interaction.editReply({ embeds: [client.helpMessage] });
     } catch (err) {
       console.log(err);
       await interaction.editReply(`Error Occurred`);
     }
-  },
+  }
 };

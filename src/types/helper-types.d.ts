@@ -1,16 +1,4 @@
-import {
-  APIEmbedThumbnail,
-  Client,
-  Collection,
-  EmbedAuthorData,
-  EmbedBuilder,
-  EmbedData,
-  EmbedField,
-  EmbedFooterData,
-  EmbedImageData,
-  Interaction,
-  Message,
-} from "discord.js";
+import { APIEmbedThumbnail, Client, Collection, EmbedAuthorData, EmbedBuilder, EmbedData, EmbedField, EmbedFooterData, EmbedImageData, Interaction, Message } from "discord.js";
 
 export interface IPrefixCommand {
   name?: string;
@@ -40,8 +28,7 @@ interface execute {
   (message: Message | Interaction, client: IBotHelperClient);
 }
 export interface IBotHelperClient extends Client {
-  prefixCommandHelpMessage?: EmbedBuilder;
-  slashCommandHelpMessage?: EmbedBuilder;
+  helpMessage?: EmbedBuilder;
   slashCommandsInfo?: ISlashCommand[];
   slashCommands?: Collection<string, { execute: execute }>;
   coolDowns?: Map<string, Collection<string, number>>;

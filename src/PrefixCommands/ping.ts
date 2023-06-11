@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { IBotHelperClient } from "../../types/helperTypes";
+import { IBotHelperClient } from "../types/helper-types";
 
 module.exports = {
   name: "ping",
@@ -11,5 +11,5 @@ module.exports = {
       console.log(err);
       await message.channel.send(`Error Occurred`);
     }
-  },
+  }
 };

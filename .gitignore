@@ -3,3 +3,5 @@ dist
 .env
 REMOVE_THIS_TEXT.env
 deployDist
+package-lock.json
+.vscode

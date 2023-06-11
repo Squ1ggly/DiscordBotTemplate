@@ -1,32 +1,23 @@
 {
   "name": "discordbottemplate",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "genenv": "node ./genenv.js",
-    "start:yarn": "yarn && npx tsc && node ./copyfilestoenv.js && ts-node ./src/index.ts",
-    "start:npm": "npm i && npx tsc && node ./copyfilestoenv.js && ts-node ./src/index.ts",
-    "build": "yarn && npx tsc && node ./copyfilestoenv.js",
-    "start": "node ./dist/src/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Squ1ggly/squ1dsterbot.git"
+    "genenv": "node ./gen-dotenv.js",
+    "start:yarn": "yarn && npx tsc && ts-node ./src/index.ts",
+    "start:npm": "npm i && npx tsc && ts-node ./src/index.ts",
+    "build:yarn": "yarn && npx tsc",
+    "build:npm": "npm i && npx tsc",
+    "start:built": "node ./dist/src/index.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Squ1ggly/squ1dsterbot/issues"
-  },
-  "homepage": "https://github.com/Squ1ggly/squ1dsterbot#readme",
   "dependencies": {
     "@discordjs/builders": "^1.1.0",
     "@discordjs/collection": "^1.0.1",
     "@discordjs/rest": "^1.0.1",
     "@sapphire/shapeshift": "^3.7.0",
-    "@types/luxon": "^3.1.0",
-    "@types/node": "^18.11.9",
     "chalk": "^4.1.2",
     "discord-api-types": "^0.37.3",
     "discord.js": "^14.2.0",
@@ -36,13 +27,15 @@
     "typescript": "^4.8.4",
     "yarn": "^1.22.19"
   },
+  "devDependencies": {
+    "@types/luxon": "^3.1.0",
+    "@types/node": "^18.11.9"
+  },
   "resolutions": {
     "@discordjs/builders": "^1.1.0",
     "@discordjs/collection": "^1.0.1",
     "@discordjs/rest": "^1.0.1",
     "@sapphire/shapeshift": "^3.7.0",
-    "@types/luxon": "^3.1.0",
-    "@types/node": "^18.11.9",
     "chalk": "^4.1.2",
     "discord-api-types": "^0.37.3",
     "discord.js": "^14.2.0",

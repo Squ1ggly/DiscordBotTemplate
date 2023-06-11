@@ -1,16 +1,15 @@
-import { CommandInteraction } from "discord.js";
-import { IBotHelperClient } from "../../types/helperTypes";
-import { createSlashCmd } from "../../utils/discordjsHelper";
+import { CommandInteraction, SlashCommandBuilder } from "discord.js";
+import { IBotHelperClient } from "../types/helper-types";
 
 module.exports = {
-  data: createSlashCmd("ping", 'This command will respond with "pong"'),
+  data: new SlashCommandBuilder().setName("ping".toLowerCase()).setDescription('This command will respond with "pong"'),
   async execute(interaction: CommandInteraction, client: IBotHelperClient) {
     try {
       await interaction.deferReply();
       await interaction.editReply("Pong!");
     } catch (err) {
       console.log(err);
-      await interaction.editReply("Error Occurred");
+      interaction.editReply("Error Occurred");
     }
-  },
+  }
 };
