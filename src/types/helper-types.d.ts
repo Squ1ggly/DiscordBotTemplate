@@ -1,4 +1,16 @@
-import { APIEmbedThumbnail, Client, Collection, EmbedAuthorData, EmbedBuilder, EmbedData, EmbedField, EmbedFooterData, EmbedImageData, Interaction, Message } from "discord.js";
+import {
+  APIEmbedThumbnail,
+  Client,
+  Collection,
+  EmbedAuthorData,
+  EmbedBuilder,
+  EmbedData,
+  EmbedField,
+  EmbedFooterData,
+  EmbedImageData,
+  Interaction,
+  Message
+} from "discord.js";
 
 export interface IPrefixCommand {
   name?: string;
