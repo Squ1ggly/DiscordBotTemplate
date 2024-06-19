@@ -173,7 +173,7 @@ class DiscordBotHelper {
   setSlashCommands(): void {
     console.log(`Setting slash commands`);
     this.client.slashCommands = new Collection();
-    const upDir = path.join(__dirname, "../");
+    const upDir = path.join(__dirname);
     const commandFiles = readdirSync(upDir + "/SlashCommands").filter(
       (e) => e.endsWith(".ts") || e.endsWith(".js")
     );
@@ -181,7 +181,7 @@ class DiscordBotHelper {
     this.client.slashCommandsInfo = [];
 
     for (const file of commandFiles) {
-      const command = require(`../SlashCommands/${file}`);
+      const command = require(`./SlashCommands/${file}`);
       const commandObj: ISlashCommand = {
         name: command.data.name,
         description: command.data.description
@@ -197,13 +197,13 @@ class DiscordBotHelper {
   setPrefixCommands(): void {
     console.log(`Setting prefix commands`);
     this.client.prefixCommands = new Collection();
-    const upDir = path.join(__dirname, "../");
+    const upDir = path.join(__dirname)
     const commandFiles = readdirSync(upDir + "/PrefixCommands").filter(
       (e) => e.endsWith(".ts") || e.endsWith(".js")
     );
     this.client.prefixCommandsInfo = [];
     for (const file of commandFiles) {
-      const command = require(`../PrefixCommands/${file}`);
+      const command = require(`./PrefixCommands/${file}`);
       const commandObj: IPrefixCommand = {
         name: command.name,
         description: command.description
